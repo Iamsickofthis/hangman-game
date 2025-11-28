@@ -82,8 +82,53 @@ User wins the game
 
 ---
 
+ 
+
+## 🐞 Errors & Mistakes I Learned From
+
+### 1. Mixing Strings and Lists
+I initially tried:
+    word1.append(computer_guess)
+But `word1` was a list of characters, and I needed index-based assignment:
+    word1[i] = computer_guess
+
+### 2. Using append() on a String
+Strings in Python are immutable.  
+Methods like `.append()` only work on lists.
+
+### 3. Misusing the guessed words list
+I wrote:
+    if guessed_words in user_word:
+But `guessed_words` is a list, not a character.  
+Correct check:
+    if computer_guess in guessed_words
+
+### 4. Forgetting to skip repeated guesses
+Computer repeated letters until I added:
+    if computer_guess in guessed_words:
+        continue
+
+### 5. Wrong indentation causing logic errors
+Python depends on indentation — several loops originally behaved incorrectly.
+
+### 6. Using tuple instead of list accidentally
+I did:
+    guessed_words = ()
+Tuples are immutable → cannot append.
+
+### 7. Using “lowercase()”
+Correct method is:
+    .lower()
+
+### 8. Replacing entire word instead of updating only matched indexes
+Needed to update each position manually using a loop.
+
+### 9. Hangman wasn’t printing because wrong_guesses started as a string
+Later fixed by using integer count.
+
+These mistakes helped me understand how Python strings, lists, loops, and conditions work.
+
 ## 👤 Author
 Deekshitha  
 CSE Student — Python & DSA Learner  
-Interested in Data Science & Open Source  
-
+Interested in Data Science & Open Source 
